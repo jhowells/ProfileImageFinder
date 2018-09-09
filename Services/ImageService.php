@@ -1,10 +1,15 @@
 <?php
 
+// This class uses the FullContact API get retrive a JSON string which is then converted into an array in which
+// data is located. All we're interested in here is the photo, presumably the one set as primary, but further
+// enhancements could be made to display multiple pictures.
+
 Class ImageService {
 /**
  * @var $apiKey = the API key that is stored as an environment variable
  * @url $url = the endpoint we're interested in
  * @status $status = status code to check for success or failure
+ * @obj $obj = decoded JSON string
  */
     var $apiKey;
     var $url;
@@ -35,18 +40,14 @@ Class ImageService {
             return false;
         }
 
-        // let's get the full name of the email contact so we can use it in the display
-        foreach ($this->obj as $key => $value) {
-            if ($key == 'contactInfo') {
-                $fullName = $value['fullName'];
-            }
-        }
         foreach ($this->obj as $key => $value) {
             if ($key == 'photos') {
                 foreach ($value as $key => $v) {
                     // let's just get the primary url if there are multiples
                     if ($v['isPrimary']) {
-                        return array($v['url'], $fullName);
+                        // cache the results to avoid unnecessary lookups
+                        $_SESSION[$email_address] = $v['url'];
+                        return $v['url'];
                     }
                 }
             }
@@ -69,4 +70,6 @@ Class ImageService {
     }
 
 }
+
+
 
