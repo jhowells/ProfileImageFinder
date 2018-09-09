@@ -2,9 +2,8 @@
 Profile Image Finder Project
 
 
-This project simply returns the URL of an image based on an email address. As an added bonus, I'm also displaying the
-full name of the contact. There is a lot of other information that could be displayed, but that's beyond the scope of
-this project.
+This project simply returns the URL of an image based on an email address and displays the image. There is a lot of
+other information that could be displayed, but that's beyond the scope of this project.
 
 
 NOTES:
@@ -16,7 +15,7 @@ starting with version 5.
 The API Key comes from an environment variable. Methods of storing environment variables vary from platform to
 platform. For MAMP the variable is stored in /Applications/MAMP/Library/bin/envvars.
 
-For caching results, I have found it's sufficient to use APC cache on my server.
+Results are cached using $_SESSION variables.
 
 
 INSTALLATION:
@@ -30,7 +29,7 @@ SOME POSSIBLE IMPROVEMENTS:
 1. Allow the user to pick from several different image finder services from a dropdown in the form. By default,
    select FullContact.
 
-2. Currently the primary image is chosen, but in the cases where multiple imags are available, allow the user to
+2. Currently the primary image is chosen, but in the cases where multiple images are available, allow the user to
    choose from the array after retrieving, or allow the option of passing in the preferred avatar from various
    locations, such as Facebook, LinkedIn, Google, etc.
 
